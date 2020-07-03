@@ -1,0 +1,84 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fullname" . }}
+  labels:
+    app: {{ include "name" . }}
+    chart: {{ include "chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+{{- if le .Values.deployment.replicas 1.0 }}
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+{{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "name" . }}
+        release: {{ .Release.Name }}
+    {{- with .Values.pod.annotations }}
+      annotations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ required "Set image.tag" .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        args:
+        - --es-cluster={{ required "Set elasticsearch.cluster" .Values.elasticsearch.cluster }}
+        - --port={{ .Values.container.port }}
+        {{- if .Values.elasticsearch.queries }}
+        - --config-file=/mnt/config/exporter.cfg
+        {{- else }}
+        - --query-disable
+        {{- end }}
+        {{- with .Values.container.extraArgs }}
+{{ toYaml . | indent 8 }}
+        {{- end }}
+        ports:
+          - name: {{ .Values.container.portName }}
+            containerPort: {{ .Values.container.port }}
+        livenessProbe:
+          tcpSocket:
+            path: /
+            port: {{ .Values.container.portName }}
+        readinessProbe:
+          tcpSocket:
+            path: /
+            port: {{ .Values.container.portName }}
+      {{ if .Values.resources }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+      {{ end }}
+      {{- if .Values.elasticsearch.queries }}
+        volumeMounts:
+          - name: config-volume
+            mountPath: /mnt/config
+      {{- end }}
+    {{- if .Values.elasticsearch.queries }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ include "fullname" . }}
+    {{- end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 6 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
