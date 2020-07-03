@@ -49,11 +49,9 @@ spec:
             containerPort: {{ .Values.container.port }}
         livenessProbe:
           tcpSocket:
-            path: /
             port: {{ .Values.container.portName }}
         readinessProbe:
           tcpSocket:
-            path: /
             port: {{ .Values.container.portName }}
       {{ if .Values.resources }}
         resources:
