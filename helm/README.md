@@ -10,6 +10,7 @@ helm repo update
 
 # Charts
 - [Prometheus Elasticsearch Exporter](/helm/prometheus-es-exporter)
+- [Prometheus MySQL Exporter](/helm/prometheus-mysql-exporter)
 
 # Rebuild Repo
 ```bash

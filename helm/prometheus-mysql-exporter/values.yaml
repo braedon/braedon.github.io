@@ -1,0 +1,50 @@
+---
+# Default values for prometheus-es-exporter.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+mysql:
+  # server: <mysql server address>
+  cred:
+    # secret: <user credentials secret>
+    usernameKey: username
+    passwordKey: password
+  # localTimezone: <local timezone>
+  queries: |-
+    [DEFAULT]
+    QueryIntervalSecs = 15
+    QueryOnError = drop
+    QueryOnMissing = drop
+
+    # [query_test]
+    # QueryDatabase = test
+    # QueryStatement = SELECT bar, baz, count(*) as ni, max(ekki) as ptang FROM foo GROUP BY bar, baz;
+    # QueryValueColumns = ni,ptang
+
+deployment:
+  replicas: 1
+
+pod:
+  annotations: {}
+
+image:
+  repository: braedon/prometheus-mysql-exporter
+  # tag: <image tag>
+  pullPolicy: IfNotPresent
+
+container:
+  port: 9207
+  portName: prometheus
+  extraArgs: []
+  resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+service:
+  port: 9207
+  portName: prometheus
+  annotations: {}

@@ -1,0 +1,10 @@
+apiVersion: v1
+name: prometheus-mysql-exporter
+version: 0.1.0
+description: Run queries on Mysql and export the results as Prometheus metrics.
+home: https://github.com/braedon/prometheus-mysql-exporter
+sources:
+  - https://github.com/braedon/prometheus-mysql-exporter
+maintainers:
+  - name: Braedon Vickers
+    email: braedon.vickers@gmail.com

@@ -26,7 +26,7 @@ Available configurable parameters and their default values.
 Parameter                   | Description                                         | Default
 ---                         | ---                                                 | ---
 `elasticsearch.cluster`     | addresses of elasticsearch nodes to run queries on  | none
-`elasticsearch.queries`     | elasticsearch queries to run                        | none
+`elasticsearch.queries`     | elasticsearch queries to run                        | see values.yaml
 `deployment.replicas`       | exporter pod replicas to deploy                     | `1`
 `pod.annotations`           | annotations to add to the exporter pods             | `{}`
 `image.repository`          | exporter docker image repository                    | `braedon/prometheus-es-exporter`
