@@ -7,7 +7,7 @@ This Prometheus exporter collects metrics from queries run on an Elasticsearch c
 # Installation
 Deploy prometheus-es-exporter on a Kubernetes cluster with the default configuration:
 ```bash
-helm repo add braedon https://braedon.github.com/helm
+helm repo add braedon https://braedon.github.io/helm
 helm repo update
 
 helm install braedon/prometheus-es-exporter --name <release name> \

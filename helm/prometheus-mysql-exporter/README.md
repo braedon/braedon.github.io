@@ -7,7 +7,7 @@ This Prometheus exporter periodically runs configured queries against a MySQL se
 # Installation
 Deploy prometheus-mysql-exporter on a Kubernetes cluster with the default configuration:
 ```bash
-helm repo add braedon https://braedon.github.com/helm
+helm repo add braedon https://braedon.github.io/helm
 helm repo update
 
 helm install braedon/prometheus-mysql-exporter --name <release name> \

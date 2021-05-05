@@ -4,7 +4,7 @@ The helm repository for projects from [github.com/braedon](https://github.com/br
 
 # Use Repo
 ```bash
-helm repo add braedon https://braedon.github.com/helm
+helm repo add braedon https://braedon.github.io/helm
 helm repo update
 ```
 
