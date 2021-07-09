@@ -2,6 +2,21 @@ apiVersion: v1
 entries:
   prometheus-es-exporter:
   - apiVersion: v1
+    created: "2021-07-09T08:25:15.015994853+08:00"
+    description: Run queries on Elasticsearch and export the results as Prometheus
+      metrics.
+    digest: 442305448f5aeac7bd5513dec4d1f46b60aa6177fe8c2b4c34ed777c81d0fd32
+    home: https://github.com/braedon/prometheus-es-exporter
+    maintainers:
+    - email: braedon.vickers@gmail.com
+      name: Braedon Vickers
+    name: prometheus-es-exporter
+    sources:
+    - https://github.com/braedon/prometheus-es-exporter
+    urls:
+    - https://braedon.github.io/helm/prometheus-es-exporter-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
     created: "2020-07-03T22:43:25.904895825+08:00"
     description: Run queries on Elasticsearch and export the results as Prometheus
       metrics.
@@ -46,4 +61,4 @@ entries:
     urls:
     - https://braedon.github.io/helm/prometheus-mysql-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2020-09-07T14:19:28.597971909+08:00"
+generated: "2021-07-09T08:25:15.014886345+08:00"

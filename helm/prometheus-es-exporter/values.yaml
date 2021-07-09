@@ -26,6 +26,7 @@ deployment:
 
 pod:
   annotations: {}
+  extraVolumes: []
 
 image:
   repository: braedon/prometheus-es-exporter
@@ -36,6 +37,8 @@ container:
   port: 9206
   portName: prometheus
   extraArgs: []
+  extraEnv: []
+  extraVolumeMounts: []
   resources: {}
 
 nodeSelector: {}
