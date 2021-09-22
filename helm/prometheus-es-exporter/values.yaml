@@ -48,3 +48,6 @@ service:
   port: 9206
   portName: prometheus
   annotations: {}
+
+serviceMonitor:
+  enabled: false
