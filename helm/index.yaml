@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   prometheus-es-exporter:
   - apiVersion: v1
-    created: "2021-07-09T08:25:15.015994853+08:00"
+    created: "2021-12-02T22:21:42.065602639+08:00"
     description: Run queries on Elasticsearch and export the results as Prometheus
       metrics.
-    digest: 442305448f5aeac7bd5513dec4d1f46b60aa6177fe8c2b4c34ed777c81d0fd32
+    digest: b388e38d3b428fd04fbc47274c851b6e388fdcf4cb5da80e7c22013dbdbc159b
     home: https://github.com/braedon/prometheus-es-exporter
     maintainers:
     - email: braedon.vickers@gmail.com
@@ -14,10 +14,10 @@ entries:
     sources:
     - https://github.com/braedon/prometheus-es-exporter
     urls:
-    - https://braedon.github.io/helm/prometheus-es-exporter-0.1.2.tgz
-    version: 0.1.2
+    - https://braedon.github.io/helm/prometheus-es-exporter-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v1
-    created: "2020-07-03T22:43:25.904895825+08:00"
+    created: "2021-12-02T22:21:42.065167778+08:00"
     description: Run queries on Elasticsearch and export the results as Prometheus
       metrics.
     digest: 53669c0593a399cd6e4bc64c6da9af4636b58455cd96576ff409efdf1be0ca29
@@ -32,7 +32,7 @@ entries:
     - https://braedon.github.io/helm/prometheus-es-exporter-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: "2020-07-03T22:43:25.90442122+08:00"
+    created: "2021-12-02T22:21:42.064490946+08:00"
     description: Run queries on Elasticsearch and export the results as Prometheus
       metrics.
     digest: da089b73d8b67095d54f838e59c3148c6c58af0890265eebcf8f14dd90b0c605
@@ -48,7 +48,21 @@ entries:
     version: 0.1.0
   prometheus-mysql-exporter:
   - apiVersion: v1
-    created: "2020-09-07T14:19:28.59946306+08:00"
+    created: "2021-12-02T22:21:42.066694241+08:00"
+    description: Run queries on Mysql and export the results as Prometheus metrics.
+    digest: 584bb221d65cc9794bd08446628d47f5790b0f5b1ac507f814a127be6847f01f
+    home: https://github.com/braedon/prometheus-mysql-exporter
+    maintainers:
+    - email: braedon.vickers@gmail.com
+      name: Braedon Vickers
+    name: prometheus-mysql-exporter
+    sources:
+    - https://github.com/braedon/prometheus-mysql-exporter
+    urls:
+    - https://braedon.github.io/helm/prometheus-mysql-exporter-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
+    created: "2021-12-02T22:21:42.066201757+08:00"
     description: Run queries on Mysql and export the results as Prometheus metrics.
     digest: 83223aa3868be8e874e9071989cb11c93292aff23032c7d80cc2cc292e336441
     home: https://github.com/braedon/prometheus-mysql-exporter
@@ -61,4 +75,4 @@ entries:
     urls:
     - https://braedon.github.io/helm/prometheus-mysql-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-09T08:25:15.014886345+08:00"
+generated: "2021-12-02T22:21:42.063770292+08:00"
