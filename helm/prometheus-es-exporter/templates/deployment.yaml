@@ -44,6 +44,10 @@ spec:
         {{- with .Values.container.extraArgs }}
 {{ toYaml . | indent 8 }}
         {{- end }}
+        env:
+        {{- with .Values.container.extraEnv }}
+{{ toYaml . | indent 8 }}
+        {{- end }}
         ports:
           - name: {{ .Values.container.portName }}
             containerPort: {{ .Values.container.port }}
@@ -57,17 +61,23 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
       {{ end }}
-      {{- if .Values.elasticsearch.queries }}
         volumeMounts:
-          - name: config-volume
-            mountPath: /mnt/config
-      {{- end }}
-    {{- if .Values.elasticsearch.queries }}
+        {{- if .Values.elasticsearch.queries }}
+        - name: config-volume
+          mountPath: /mnt/config
+        {{- end }}
+        {{- with .Values.container.extraVolumeMounts }}
+{{ toYaml . | indent 8 }}
+        {{- end }}
       volumes:
+      {{- if .Values.elasticsearch.queries }}
       - name: config-volume
         configMap:
           name: {{ include "fullname" . }}
-    {{- end }}
+      {{- end }}
+      {{- with .Values.pod.extraVolumes }}
+{{ toYaml . | indent 6 }}
+      {{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
