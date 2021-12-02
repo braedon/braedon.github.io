@@ -16,6 +16,6 @@ spec:
     app: {{ include "name" . }}
     release: {{ .Release.Name }}
   ports:
-  - name: {{ .Values.service.portName }}
-    port: {{ .Values.service.port }}
-    targetPort: {{ .Values.container.portName }}
+    - name: {{ .Values.service.portName }}
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.container.portName }}

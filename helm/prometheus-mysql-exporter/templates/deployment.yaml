@@ -10,11 +10,11 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
-{{- if le .Values.deployment.replicas 1.0 }}
+  {{- if le .Values.deployment.replicas 1.0 }}
   strategy:
     rollingUpdate:
       maxUnavailable: 0
-{{- end }}
+  {{- end }}
   selector:
     matchLabels:
       app: {{ include "name" . }}
@@ -24,78 +24,78 @@ spec:
       labels:
         app: {{ include "name" . }}
         release: {{ .Release.Name }}
-    {{- with .Values.pod.annotations }}
+      {{- with .Values.pod.annotations }}
       annotations:
 {{ toYaml . | indent 8 }}
-    {{- end }}
+      {{- end }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ required "Set image.tag" .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-        {{- if .Values.mysql.cred.secret }}
-        - name: MYSQL_EXPORTER_MYSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.mysql.cred.secret }}
-              key: {{ .Values.mysql.cred.usernameKey }}
-        - name: MYSQL_EXPORTER_MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.mysql.cred.secret }}
-              key: {{ .Values.mysql.cred.passwordKey }}
-        {{- end }}
-        {{- with .Values.container.extraEnv }}
-{{ toYaml . | indent 8 }}
-        {{- end }}
-        args:
-        - --mysql-server={{ required "Set mysql.server" .Values.mysql.server }}
-        {{- with .Values.mysql.localTimezone }}
-        - --mysql-local-timezone={{ . }}
-        {{- end}}
-        - --port={{ .Values.container.port }}
-        - --config-file=/mnt/config/exporter.cfg
-        {{- with .Values.container.extraArgs }}
-{{ toYaml . | indent 8 }}
-        {{- end }}
-        ports:
-          - name: {{ .Values.container.portName }}
-            containerPort: {{ .Values.container.port }}
-        livenessProbe:
-          tcpSocket:
-            port: {{ .Values.container.portName }}
-        readinessProbe:
-          tcpSocket:
-            port: {{ .Values.container.portName }}
-      {{ if .Values.resources }}
-        resources:
-{{ toYaml .Values.resources | indent 10 }}
-      {{- end }}
-        volumeMounts:
-        {{- if .Values.mysql.queries }}
-          - name: config-volume
-            mountPath: /mnt/config
-        {{- end }}
-        {{- with .Values.container.extraVolumeMounts }}
-{{ toYaml . | indent 8 }}
-        {{- end }}
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ required "Set image.tag" .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if .Values.mysql.cred.secret }}
+            - name: MYSQL_EXPORTER_MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.cred.secret }}
+                  key: {{ .Values.mysql.cred.usernameKey }}
+            - name: MYSQL_EXPORTER_MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.cred.secret }}
+                  key: {{ .Values.mysql.cred.passwordKey }}
+            {{- end }}
+            {{- with .Values.container.extraEnv }}
+{{ toYaml . | indent 12 }}
+            {{- end }}
+          args:
+            - --mysql-server={{ required "Set mysql.server" .Values.mysql.server }}
+            {{- with .Values.mysql.localTimezone }}
+            - --mysql-local-timezone={{ . }}
+            {{- end}}
+            - --port={{ .Values.container.port }}
+            - --config-file=/mnt/config/exporter.cfg
+            {{- with .Values.container.extraArgs }}
+{{ toYaml . | indent 12 }}
+            {{- end }}
+          ports:
+            - name: {{ .Values.container.portName }}
+              containerPort: {{ .Values.container.port }}
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.container.portName }}
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.container.portName }}
+          {{- if .Values.resources }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          {{- end }}
+          volumeMounts:
+            {{- if .Values.mysql.queries }}
+            - name: config-volume
+              mountPath: /mnt/config
+            {{- end }}
+            {{- with .Values.container.extraVolumeMounts }}
+{{ toYaml . | indent 12 }}
+            {{- end }}
       volumes:
-      - name: config-volume
-        configMap:
-          name: {{ include "fullname" . }}
-      {{- with .Values.pod.extraVolumes }}
-{{ toYaml . | indent 6 }}
-      {{- end }}
-    {{- with .Values.nodeSelector }}
+        - name: config-volume
+          configMap:
+            name: {{ include "fullname" . }}
+        {{- with .Values.pod.extraVolumes }}
+{{ toYaml . | indent 8 }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
-{{ toYaml . | indent 6 }}
-    {{- end }}
-    {{- with .Values.affinity }}
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
       affinity:
 {{ toYaml . | indent 8 }}
-    {{- end }}
+      {{- end }}

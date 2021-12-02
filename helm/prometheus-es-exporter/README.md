@@ -23,28 +23,28 @@ helm install braedon/prometheus-es-exporter --name <release name> -f <config fil
 # Configuration
 Available configurable parameters and their default values.
 
-Parameter                   | Description                                         | Default
----                         | ---                                                 | ---
-`elasticsearch.cluster`     | addresses of elasticsearch nodes to run queries on  | none
-`elasticsearch.queries`     | elasticsearch queries to run                        | see values.yaml
-`deployment.replicas`       | exporter pod replicas to deploy                     | `1`
-`pod.annotations`           | annotations to add to the exporter pods             | `{}`
-`pod.extraVolumes`          | extra volumes to pass to the exporter pod           | `[]`
-`image.repository`          | exporter docker image repository                    | `braedon/prometheus-es-exporter`
-`image.tag`                 | exporter docker image tag                           | none
-`image.pullPolicy`          | exporter docker image pull policy                   | `IfNotPresent`
-`container.port`            | exporter container metrics port                     | `9206`
-`container.portName`        | exporter container metrics port name                | `prometheus`
-`container.extraArgs`       | extra arguments to pass to the exporter container   | `[]`
-`container.extraEnv`        | extra env vars to pass to the exporter container    | `[]`
+Parameter                     | Description                                           | Default
+---                           | ---                                                   | ---
+`elasticsearch.cluster`       | addresses of elasticsearch nodes to run queries on    | none
+`elasticsearch.queries`       | elasticsearch queries to run                          | see values.yaml
+`deployment.replicas`         | exporter pod replicas to deploy                       | `1`
+`pod.annotations`             | annotations to add to the exporter pods               | `{}`
+`pod.extraVolumes`            | extra volumes to pass to the exporter pod             | `[]`
+`image.repository`            | exporter docker image repository                      | `braedon/prometheus-es-exporter`
+`image.tag`                   | exporter docker image tag                             | none
+`image.pullPolicy`            | exporter docker image pull policy                     | `IfNotPresent`
+`container.port`              | exporter container metrics port                       | `9206`
+`container.portName`          | exporter container metrics port name                  | `prometheus`
+`container.extraArgs`         | extra arguments to pass to the exporter container     | `[]`
+`container.extraEnv`          | extra env vars to pass to the exporter container      | `[]`
 `container.extraVolumeMounts` | extra volume mounts to pass to the exporter container | `[]`
-`container.resources`       | exporter container resource requests & limits       | `{}`
-`nodeSelector`              | node labels for exporter pod assignment             | `{}`
-`tolerations`               | node taints to tolerate (requires Kubernetes >=1.6) | `[]`
-`affinity`                  | node/pod affinities (requires Kubernetes >=1.6)     | `{}`
-`service.port`              | exporter service port                               | `9206`
-`service.portName`          | exporter service port name                          | `prometheus`
-`service.annotations`       | annotations to add to the exporter service          | `{}`
+`container.resources`         | exporter container resource requests & limits         | `{}`
+`nodeSelector`                | node labels for exporter pod assignment               | `{}`
+`tolerations`                 | node taints to tolerate (requires Kubernetes >=1.6)   | `[]`
+`affinity`                    | node/pod affinities (requires Kubernetes >=1.6)       | `{}`
+`service.port`                | exporter service port                                 | `9206`
+`service.portName`            | exporter service port name                            | `prometheus`
+`service.annotations`         | annotations to add to the exporter service            | `{}`
 
 See the [exporter README](https://github.com/braedon/prometheus-es-exporter#usage) for details on the format of exporter options like `elasticsearch.cluster`.
 

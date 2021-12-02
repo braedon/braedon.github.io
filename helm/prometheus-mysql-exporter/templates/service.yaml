@@ -7,15 +7,15 @@ metadata:
     chart: {{ include "chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-{{- with .Values.service.annotations }}
+  {{- with .Values.service.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
-{{- end }}
+  {{- end }}
 spec:
   selector:
     app: {{ include "name" . }}
     release: {{ .Release.Name }}
   ports:
-  - name: {{ .Values.service.portName }}
-    port: {{ .Values.service.port }}
-    targetPort: {{ .Values.container.portName }}
+    - name: {{ .Values.service.portName }}
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.container.portName }}
