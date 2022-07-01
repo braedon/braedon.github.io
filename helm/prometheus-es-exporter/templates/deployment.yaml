@@ -33,13 +33,23 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ required "Set image.tag" .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.container.extraEnv }}
           env:
-{{ toYaml . | indent 12 }}
+          {{- if .Values.authentication }}
+            - name: ES_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.authentication.basic.password.secretRef }}
+                  key: {{ .Values.authentication.basic.password.secretKey }}
+                  optional: false
           {{- end }}
           args:
             - --es-cluster={{ required "Set elasticsearch.cluster" .Values.elasticsearch.cluster }}
             - --port={{ .Values.container.port }}
+{{- if .Values.authentication }}
+            - --basic-user={{ .Values.authentication.basic.user }}
+            - --basic-password
+            - $(ES_PASS)
+{{- end }}
             {{- if .Values.elasticsearch.queries }}
             - --config-file=/mnt/config/exporter.cfg
             {{- else }}

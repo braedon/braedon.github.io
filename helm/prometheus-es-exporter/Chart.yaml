@@ -1,10 +1,10 @@
 apiVersion: v1
-name: prometheus-es-exporter
-version: 0.2.0
 description: Run queries on Elasticsearch and export the results as Prometheus metrics.
 home: https://github.com/braedon/prometheus-es-exporter
-sources:
-  - https://github.com/braedon/prometheus-es-exporter
 maintainers:
-  - name: Braedon Vickers
-    email: braedon.vickers@gmail.com
+- email: braedon.vickers@gmail.com
+  name: Braedon Vickers
+name: prometheus-es-exporter
+sources:
+- https://github.com/braedon/prometheus-es-exporter
+version: 0.2.0
