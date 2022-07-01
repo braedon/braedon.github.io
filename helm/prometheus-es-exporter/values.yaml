@@ -41,6 +41,13 @@ container:
   extraVolumeMounts: []
   resources: {}
 
+authentication:
+  basic:
+    user: elastic
+    password:
+      secretRef: elasticsearch-es-elastic-user
+      secretKey: elastic
+
 nodeSelector: {}
 
 tolerations: []
