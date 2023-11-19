@@ -1,5 +1,22 @@
 apiVersion: v1
 entries:
+  elasticsearch:
+  - apiVersion: v1
+    appVersion: 7.10.3-BV1
+    created: "2023-11-19T18:09:46.357334314+08:00"
+    description: Official Elastic helm chart for Elasticsearch
+    digest: 8a7d8629bee0035164ca5234193bf9d141dc6d635c34820cf856deb571b0a765
+    home: https://github.com/elastic/helm-charts
+    icon: https://helm.elastic.co/icons/elasticsearch.png
+    maintainers:
+    - email: helm-charts@elastic.co
+      name: Elastic
+    name: elasticsearch
+    sources:
+    - https://github.com/elastic/elasticsearch
+    urls:
+    - https://braedon.github.io/helm/elasticsearch-7.10.3-BV1.tgz
+    version: 7.10.3-BV1
   prometheus-es-exporter:
   - apiVersion: v1
     created: "2021-12-02T22:21:42.065602639+08:00"
@@ -75,4 +92,4 @@ entries:
     urls:
     - https://braedon.github.io/helm/prometheus-mysql-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-02T22:21:42.063770292+08:00"
+generated: "2023-11-19T18:09:46.356132517+08:00"
